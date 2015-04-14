@@ -4,7 +4,7 @@ angular.module('ckc-stacked',[])
 .directive('stacked',['$timeout', '$window', function($timeout, $window){
 	return {
 		restrict:'A',
-		templateUrl:function(a,b){if(b && b.hasOwnProperty('stackedTemplateUrl') && b.stackedTemplateUrl !== ''){ return b.stackedTemplateUrl;}else{return '/modules/ckc-angularjs-stacked/views/sample_stacked.html';}},
+		templateUrl:function(a,b){if(b && b.hasOwnProperty('stackedTemplateUrl') && b.stackedTemplateUrl !== ''){ return b.stackedTemplateUrl;}else{return false;}},
 		scope:{
 			stacked_items:'=stackedItems',
 		},
@@ -147,7 +147,7 @@ angular.module('ckc-stacked',[])
 					return elm.width();
 				},
 				function(newVal){
-					if(newVal){ 
+					if(newVal){
 						stack();
 					}
 				},true
