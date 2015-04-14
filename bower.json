@@ -1,0 +1,25 @@
+{
+  "name": "ckc-angularjs-stacked",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ckelsey/ckc-angularjs-stacked",
+  "authors": [
+    "ckelsey <chris@fordela.com>"
+  ],
+  "description": "An Angularjs module for simple masonry grid layout",
+  "main": "dist/stacked.min.js",
+  "keywords": [
+    "Angularjs",
+    "Masonry",
+    "grid"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".DS_Store",
+    ".git",
+    ".gitignore",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

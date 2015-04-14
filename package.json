@@ -1,0 +1,46 @@
+{
+  "name": "ckc-angularjs-stacked",
+  "version": "1.0.0",
+  "description": "An Angularjs module for simple masonry grid layout",
+  "main": "dist/stacked.min.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckelsey/ckc-angularjs-stacked"
+  },
+  "keywords": [
+    "Angularjs",
+    "Masonry",
+    "grid"
+  ],
+  "author": "Chris Kelsey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ckelsey/ckc-angularjs-stacked/issues"
+  },
+  "homepage": "https://github.com/ckelsey/ckc-angularjs-stacked/blob/master/README.md",
+  "dependencies": {
+    "bower": "^*",
+    "gulp": "^*",
+    "gulp-apidoc": "^*",
+    "gulp-minify-css": "^*",
+    "gulp-ngdocs": "^*",
+    "gulp-uglify": "^*",
+    "gulp-usemin": "^*",
+    "gulp-ng-html2js":"^*",
+    "gulp-minify-html":"^*",
+    "through2":"^*",
+    "gulp-util":"^*",
+    "minimize":"^*",
+  	"gulp-sourcemaps":"^*",
+  	"gulp-ng-annotate":"^*",
+  	"gulp-compass":"^*",
+  	"vinyl-fs":"^*",
+  	"gulp-uglifyjs":"^*",
+  	"gulp-concat":"^*",
+  	"gulp-notify":"^*",
+  	"gulp-livereload":"^*",
+  	"gulp-plumber":"^*",
+  	"gulp-concat-sourcemap":"^*"
+  }
+}
