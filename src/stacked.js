@@ -34,14 +34,18 @@ angular.module('ckc-stacked',[])
 			}else{
 				scope.stacked_smart = attrs.stackedSmart;
 			}
+
 			var items = null;
 			var column_count = 0;
+			
 			var get_column_count = function(){
 				return Math.floor(elm.width() / ((parseInt(scope.stacked_max_width) + parseInt(scope.stacked_min_width)) / 2));
 			};
+			
 			var isDate = function(date) {
 				return ( (new Date(date) !== "Invalid Date" && !isNaN(new Date(date)) ));
 			}
+			
 			var sort_items = function(){
 				var items_array = [];
 				var sort = scope.stacked_sort;
@@ -84,10 +88,10 @@ angular.module('ckc-stacked',[])
 				}
 				return items_array;
 			};
+			
 			var stack = function(){
 				if(scope.stacked_items){
 					items = sort_items();
-					console.log(items);
 					column_count = get_column_count();
 					scope.stacked_columns = [];
 					var index = 0;
@@ -109,6 +113,7 @@ angular.module('ckc-stacked',[])
 					}
 				}
 			};
+
 			attrs.$observe('stackedMaxWidth', function(value){
 				if(!attrs.hasOwnProperty('stackedMaxWidth') || (attrs.hasOwnProperty('stackedMaxWidth') && attrs.stackedMaxWidth == '')){
 					scope.stacked_max_width = 400;
@@ -117,6 +122,7 @@ angular.module('ckc-stacked',[])
 				}
 				stack();
 			});
+			
 			attrs.$observe('stackedMinWidth', function(value){
 				if(!attrs.hasOwnProperty('stackedMinWidth') || (attrs.hasOwnProperty('stackedMinWidth') && attrs.stackedMinWidth == '')){
 					scope.stacked_min_width = 400;
@@ -126,6 +132,7 @@ angular.module('ckc-stacked',[])
 
 				stack();
 			});
+			
 			attrs.$observe('stackedSortDirection', function(value){
 				if(!attrs.hasOwnProperty('stackedSortDirection') || (attrs.hasOwnProperty('stacked') && attrs.stackedSortDirection == '')){
 					scope.stacked_sort_direction = 'desc';
@@ -134,6 +141,7 @@ angular.module('ckc-stacked',[])
 				}
 				stack();
 			});
+			
 			attrs.$observe('stackedSort', function(value){
 				if(!attrs.hasOwnProperty('stackedSort') || (attrs.hasOwnProperty('stackedSort') && attrs.stackedSort == '')){
 					scope.stacked_sort = 400;
@@ -142,6 +150,7 @@ angular.module('ckc-stacked',[])
 				}
 				stack();
 			});
+			
 			scope.$watch(
 				function(){
 					return elm.width();
@@ -152,6 +161,7 @@ angular.module('ckc-stacked',[])
 					}
 				},true
 			);
+			
 			stack();
 		}
 	};
