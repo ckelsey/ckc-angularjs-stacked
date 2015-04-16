@@ -1,0 +1,48 @@
+<h1 id="ckc-angularjs-stacked">ckc-angularjs-stacked</h1>
+<p>An Angularjs module for simple masonry grid layout</p>
+<h3 id="example">Example</h3>
+<h4 id="html">HTML</h4>
+<pre><code class="lang-html">&lt;form ng-init=&quot;staCKed={&#39;min_width&#39;:200, &#39;max_width&#39;:400, &#39;sort_key&#39;:&#39;number&#39;, &#39;sort_direction&#39;:&#39;desc&#39;}&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Minimum width&lt;/label&gt;
+        &lt;input class=&quot;form-control&quot; ng-model=&quot;staCKed.min_width&quot; type=&quot;text&quot; style=&quot;display:block;&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Maximum width&lt;/label&gt;
+        &lt;input class=&quot;form-control&quot; ng-model=&quot;staCKed.max_width&quot; type=&quot;text&quot; style=&quot;display:block;&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Sort key&lt;/label&gt;
+        &lt;input class=&quot;form-control&quot; ng-model=&quot;staCKed.sort_key&quot; type=&quot;text&quot; style=&quot;display:block;&quot; /&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Sort direction&lt;/label&gt;
+        &lt;input class=&quot;form-control&quot; ng-model=&quot;staCKed.sort_direction&quot; type=&quot;text&quot; style=&quot;display:block;&quot; /&gt;
+    &lt;/div&gt;
+    &lt;br /&gt;
+&lt;/form&gt;
+&lt;div stacked stacked-items=&quot;app.items_to_stack&quot; stacked-template-url=&quot;/bower_components/ckc-angularjs-stacked/views/sample_stacked.html&quot; stacked-min-width=&quot;{{staCKed.min_width}}&quot; stacked-max-width=&quot;{{staCKed.max_width}}&quot; stacked-sort=&quot;{{staCKed.sort_key}}&quot; stacked-sort-direction=&quot;{{staCKed.sort_direction}}&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="javascript">Javascript</h4>
+<pre><code class="lang-javascript">angular.module(&#39;st4rtApp&#39;,[
+    &#39;ckc-stacked&#39;
+]);
+</code></pre>
+<h3 id="options">Options</h3>
+<p>All options are defined in the HTML markup</p>
+<ul>
+<li><strong><em>stacked-items</em></strong> - The items to stack.</li>
+<li><strong><em>stacked-template-url</em></strong> - A URL to a template file.</li>
+<li><strong><em>stacked-min-width</em></strong> - The smallest you want the columns to be.</li>
+<li><strong><em>stacked-max-width</em></strong> - The largest you want the columns to be.</li>
+<li><strong><em>stacked-sort</em></strong> - The key in which to sort the items. Can be a string, date, or integer.</li>
+<li><strong><em>stacked-sort-direction</em></strong> - The direction to sort the items.</li>
+</ul>
+<h3 id="use">Use</h3>
+<ul>
+<li><strong><em>Bower</em></strong> - ckc-angularjs-stacked</li>
+<li>Add &quot;ckc-stacked&quot; to your app&#39;s dependencies</li>
+<li>Add &quot;flash_message&quot; to your app&#39;s controller dependencies</li>
+<li>Add &quot;stacked.min.js&quot; and optionally &quot;stacked.min.css&quot; to your scripts/css</li>
+<li>Add &quot;stacked&quot; attribute to your container markup</li>
+</ul>

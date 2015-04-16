@@ -41,6 +41,7 @@
   	"gulp-notify":"^*",
   	"gulp-livereload":"^*",
   	"gulp-plumber":"^*",
-  	"gulp-concat-sourcemap":"^*"
+  	"gulp-concat-sourcemap":"^*",
+    "gulp-markdown":"^*"
   }
 }

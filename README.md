@@ -1,65 +1,49 @@
-# angularjs-flash-message
-An Angularjs module for flash messages
+# ckc-angularjs-stacked
+An Angularjs module for simple masonry grid layout
 
-##Example
+###Example
 ####HTML
 ```html
-<form>
+<form ng-init="staCKed={'min_width':200, 'max_width':400, 'sort_key':'number', 'sort_direction':'desc'}">
 	<div class="form-group">
-		<label>Class (".active" makes it appear)</label>
-		<input class="form-control" ng-model="fm.class" type="text" style="display:block;" />
+		<label>Minimum width</label>
+		<input class="form-control" ng-model="staCKed.min_width" type="text" style="display:block;" />
 	</div>
 	<div class="form-group">
-		<label>Content</label>
-		<textarea class="form-control" ng-model="fm.content" style="display:block;"></textarea>
+		<label>Maximum width</label>
+		<input class="form-control" ng-model="staCKed.max_width" type="text" style="display:block;" />
 	</div>
 	<div class="form-group">
-		<label>Button 1 text</label>
-		<input class="form-control" ng-model="fm.button_1_text" type="text" style="display:block;" />
+		<label>Sort key</label>
+		<input class="form-control" ng-model="staCKed.sort_key" type="text" style="display:block;" />
 	</div>
 	<div class="form-group">
-		<label>Button 1 class</label>
-		<input class="form-control" ng-model="fm.button_1_class" type="text" style="display:block;" />
+		<label>Sort direction</label>
+		<input class="form-control" ng-model="staCKed.sort_direction" type="text" style="display:block;" />
 	</div>
-	<div class="form-group">
-		<label>Button 2 text</label>
-		<input class="form-control" ng-model="fm.button_2_text" type="text" style="display:block;" />
-	</div>
-	<div class="form-group">
-		<label>Button 2 class</label>
-		<input class="form-control" ng-model="fm.button_2_class" type="text" style="display:block;" />
-	</div>
-	<label style="display:block;">(There is also button_1_click and button_2_click, but for security, nope, not going to happen)</label>
 	<br />
-	<button class="btn btn-primary" ng-click="flash_message.set(fm)">Try it</button>
 </form>
-<flash-message></flash-message>
+<div stacked stacked-items="app.items_to_stack" stacked-template-url="/bower_components/ckc-angularjs-stacked/views/sample_stacked.html" stacked-min-width="{{staCKed.min_width}}" stacked-max-width="{{staCKed.max_width}}" stacked-sort="{{staCKed.sort_key}}" stacked-sort-direction="{{staCKed.sort_direction}}"></div>
 ```
 ####Javascript
 ```javascript
 angular.module('st4rtApp',[
-	'flashmessage'
+	'ckc-stacked'
 ]);
 ```
 
-##Options
-* ___class___ - A class to add to the message container. "active" is what activates the message.
-* ___content___ - The text content of the message. In the near future, html will be supported.
-* ___button_1_text___ - The text of the first button. Default "Ok".
-* ___button_1_click___ - The function for the first button. Default "function(){object.close();}".
-* ___button_1_class___ - The class for the first button. Default "".
-* ___button_2_text___ - The text of the second button. Default "Cancel".
-* ___button_2_click___ - The function for the second button. Default "function(){object.close();}".
-* ___button_2_class___ - The class for the second button. Default "hidden".
+###Options
+All options are defined in the HTML markup
+* ___stacked-items___ - The items to stack.
+* ___stacked-template-url___ - A URL to a template file.
+* ___stacked-min-width___ - The smallest you want the columns to be.
+* ___stacked-max-width___ - The largest you want the columns to be.
+* ___stacked-sort___ - The key in which to sort the items. Can be a string, date, or integer.
+* ___stacked-sort-direction___ - The direction to sort the items.
 
-##Methods
-* ___.set(data)___ - "data" is the options above.
-* ___.close()___ - Closes the flash message.
-
-##Use
-* ___Bower___ - ckc-angularjs-flash-message
-* Add "flash_message" to your app's dependencies
-* Add "flash_message.js" and "flash_message.css" to you scripts/css
-
-##Todo
-* Add the ability to have html in the content option
+###Use
+* ___Bower___ - ckc-angularjs-stacked
+* Add "ckc-stacked" to your app's dependencies
+* Add "flash_message" to your app's controller dependencies
+* Add "stacked.min.js" and optionally "stacked.min.css" to your scripts/css
+* Add "stacked" attribute to your container markup
