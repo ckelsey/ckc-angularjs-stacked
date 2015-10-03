@@ -6,11 +6,15 @@ angular.module('ckc-stacked',[])
 }])
 .service("StackedS", [function(){
     var self = {
-        stacked_columns:[]
+        stacked_columns:[],
+        update: function(new_stacks){
+            angular.copy(new_stacks, self.stacked_columns);
+            return self.stacked_columns;
+        }
     };
     return self;
 }])
-.directive('stacked',['$timeout', '$window', 'StackedS', function($timeout, $window, StackedS){
+.directive('stacked',['$timeout', '$compile', function($timeout, $compile){
     return {
         restrict:'A',
         scope: {
@@ -19,7 +23,7 @@ angular.module('ckc-stacked',[])
         controller:'StackedCtlr',
         controllerAs:'ctlr',
         templateUrl:function(a,b){if(b && b.hasOwnProperty('stackedTemplateUrl') && b.stackedTemplateUrl !== ''){ return b.stackedTemplateUrl;}else{return '/bower_components/ckc-angularjs-stacked/views/sample_stacked.html';}},
-        link:function(scope,elm,attrs){
+        link:function(scope,elm,attrs,ctlr){
             var stacked_items = scope.ngModel;
             var stacked_columns = [];
 
@@ -50,7 +54,6 @@ angular.module('ckc-stacked',[])
             }
 
             var items = null;
-            var column_count = 0;
 
             var get_column_count = function(){
                 return Math.floor(elm.width() / ((parseInt(stacked_max_width) + parseInt(stacked_min_width)) / 2));
@@ -106,7 +109,7 @@ angular.module('ckc-stacked',[])
             var stack = function(){
                 if(stacked_items !== undefined){
                     items = sort_items();
-                    column_count = get_column_count();
+                    var column_count = get_column_count();
                     stacked_columns = [];
                     var index = 0;
                     if(column_count == 0){
@@ -125,11 +128,14 @@ angular.module('ckc-stacked',[])
                             index++;
                         }
                     }
-                    StackedS.stacked_columns = stacked_columns;
-                    var cols = document.querySelectorAll('.stacked_column');
-                    for(var k=0;k<cols.length;k++){
-                        cols[k].style.width = (100 / column_count) + '%';
-                    }
+
+                    $timeout(function(){
+                        ctlr.StackedS.update(stacked_columns);
+                        var cols = document.querySelectorAll('.stacked_column');
+                        for(var k=0;k<cols.length;k++){
+                            cols[k].style.width = (100 / column_count) + '%';
+                        }
+                    }, 100);
                 }
             };
 
@@ -172,17 +178,17 @@ angular.module('ckc-stacked',[])
 
             var listen_then_unbind = scope.$watch('ngModel', function(s){
                 stacked_items = s;
-                var keys = Object.keys(stacked_items);
-                if(keys.length > 0){
-                    stack();
-                    listen_then_unbind();
+                if(s !== null && s !== undefined){
+                    var keys = Object.keys(stacked_items);
+                    if(keys.length > 0){
+                        stack();
+                        listen_then_unbind();
+                    }
                 }
                 return s;
             }, function(val){});
 
-            var done_resizing = function(){
-                stack();
-            };
+            var done_resizing = function(){ stack(); };
             var win_resizing;
             window.onresize = function(){
                 clearTimeout(win_resizing);
