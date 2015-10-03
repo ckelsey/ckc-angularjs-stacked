@@ -1,10 +1,14 @@
-<div ng-repeat="column in stacked_columns track by $index" stacked_column="{{$index}}">
-	<div ng-repeat="item in column track by $index" stacked-item>
-		<img ng-if="item.img" ng-src="{{item.img}}" />
-		<div ng-if="item.html" ng-bind-html="item.html"></div>
-		<p ng-if="item.text" ng-bind-html="'<label>Text:&nbsp;</label>'+item.text" class="stacked_text"></p>
-		<p ng-if="item.alpha" ng-bind-html="'<label>Alpha:&nbsp;</label>'+item.alpha" class="stacked_text"></p>
-		<p ng-if="item.number" ng-bind-html="'<label>Number:&nbsp;</label>'+item.number" class="stacked_text"></p>
-		<p ng-if="item.created" ng-bind-html="'<label>Created:&nbsp;</label>'+item.created" class="stacked_text"></p>
-	</div>
+<!--directive-->
+<div stacked stacked-items="{{p.ProductsS.products}}" stacked-template-url="/modules/products/html/stacked.html" stacked-min-width="150" stacked-max-width="250"></div>
+
+<!--to go inside a template-->
+<div ng-controller="StackedCtlr as s" class="column_wrapper">
+    <div ng-repeat="column in s.StackedS.stacked_columns track by $index" stacked_column="{{$index}}" class="column stacked_column">
+        <div ng-repeat="item in column track by $index" stacked-item class="column_item">
+            <a ng-href="/product/{{item.url}}">
+                <span class="image"><img ng-src="{{item.image}}" /></span>
+                <span class="title" ng-bind-html="item.name"></span>
+            </a>
+        </div>
+    </div>
 </div>
