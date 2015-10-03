@@ -1,8 +1,7 @@
 'use strict'
-angular.module('ckc-stacked',['ngModel'])
-.controller('StackedCtlr', ['Utility', 'StackedS', function (Utility, StackedS){
+angular.module('ckc-stacked',[])
+.controller('StackedCtlr', ['StackedS', function (StackedS){
     var self = this;
-    this.Utility = Utility;
     this.StackedS = StackedS;
 }])
 .service("StackedS", [function(){
@@ -14,11 +13,10 @@ angular.module('ckc-stacked',['ngModel'])
 .directive('stacked',['$timeout', '$window', 'StackedS', function($timeout, $window, StackedS){
     return {
         restrict:'A',
-        require:'ngModel',
         controller:'StackedCtlr',
         controllerAs:'ctlr',
         templateUrl:function(a,b){if(b && b.hasOwnProperty('stackedTemplateUrl') && b.stackedTemplateUrl !== ''){ return b.stackedTemplateUrl;}else{return '/bower_components/ckc-angularjs-stacked/views/sample_stacked.html';}},
-        link:function(scope,elm,attrs,ngModel){
+        link:function(scope,elm,attrs){
             var stacked_items = attrs.stackedItems;
             var stacked_columns = [];
 
