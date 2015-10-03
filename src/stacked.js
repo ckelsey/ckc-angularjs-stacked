@@ -1,5 +1,5 @@
 'use strict'
-angular.module('ckc-stacked',[])
+angular.module('ckc-stacked',['ngModel'])
 .controller('StackedCtlr', ['Utility', 'StackedS', function (Utility, StackedS){
     var self = this;
     this.Utility = Utility;
