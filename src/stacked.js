@@ -13,11 +13,14 @@ angular.module('ckc-stacked',[])
 .directive('stacked',['$timeout', '$window', 'StackedS', function($timeout, $window, StackedS){
     return {
         restrict:'A',
+        scope: {
+          ngModel: '='
+        },
         controller:'StackedCtlr',
         controllerAs:'ctlr',
         templateUrl:function(a,b){if(b && b.hasOwnProperty('stackedTemplateUrl') && b.stackedTemplateUrl !== ''){ return b.stackedTemplateUrl;}else{return '/bower_components/ckc-angularjs-stacked/views/sample_stacked.html';}},
         link:function(scope,elm,attrs){
-            var stacked_items = attrs.stackedItems;
+            var stacked_items = scope.ngModel;
             var stacked_columns = [];
 
             if(!attrs.hasOwnProperty('stackedSort') || (attrs.hasOwnProperty('stackedSort') && attrs.stackedSort == '')){
@@ -130,11 +133,6 @@ angular.module('ckc-stacked',[])
                 }
             };
 
-            attrs.$observe('stackedItems', function(value){
-                stacked_items = JSON.parse(attrs.stackedItems);
-                stack();
-            });
-
             attrs.$observe('stackedMaxWidth', function(value){
                 if(!attrs.hasOwnProperty('stackedMaxWidth') || (attrs.hasOwnProperty('stackedMaxWidth') && attrs.stackedMaxWidth == '')){
                     stacked_max_width = 400;
@@ -172,6 +170,16 @@ angular.module('ckc-stacked',[])
                 stack();
             });
 
+            var listen_then_unbind = scope.$watch('ngModel', function(s){
+                stacked_items = s;
+                var keys = Object.keys(stacked_items);
+                if(keys.length > 0){
+                    stack();
+                    listen_then_unbind();
+                }
+                return s;
+            }, function(val){});
+
             var done_resizing = function(){
                 stack();
             };
@@ -180,9 +188,7 @@ angular.module('ckc-stacked',[])
                 clearTimeout(win_resizing);
                 win_resizing = setTimeout(done_resizing, 100);
             };
-
             stack();
-
         }
     };
 }])
