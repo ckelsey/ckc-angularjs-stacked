@@ -176,13 +176,12 @@ angular.module('ckc-stacked',[])
                 stack();
             });
 
-            var listen_then_unbind = scope.$watch('ngModel', function(s){
+            scope.$watch('ngModel', function(s){
                 stacked_items = s;
                 if(s !== null && s !== undefined){
                     var keys = Object.keys(stacked_items);
                     if(keys.length > 0){
                         stack();
-                        listen_then_unbind();
                     }
                 }
                 return s;
