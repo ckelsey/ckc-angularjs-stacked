@@ -31,3 +31,7 @@
 *[stacked] *[stacked-item] p.stacked_text {
   margin: 15px 2px 0;
 }
+
+*[stacked] .column_wrapper {
+  display: table-row;
+}

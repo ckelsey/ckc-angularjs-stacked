@@ -56,7 +56,7 @@ angular.module('ckc-stacked',[])
             var items = null;
 
             var get_column_count = function(){
-                return Math.floor(elm.width() / ((parseInt(stacked_max_width) + parseInt(stacked_min_width)) / 2));
+                return Math.floor(elm[0].offsetWidth / ((parseInt(stacked_max_width) + parseInt(stacked_min_width)) / 2));
             };
 
             var isDate = function(date) {
